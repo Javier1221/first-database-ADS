@@ -1,0 +1,55 @@
+#Creando la tabla fligths
+
+CREATE TABLE flights ( 
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	origin VARCHAR(255) NOT NULL, 
+	destination VARCHAR(255) NOT NULL, 
+	duration INT NOT NULL 
+)
+
+#Insertando la Data 
+INSERT INTO flights(origin,destination,duration)values("New York","London",415);
+INSERT INTO flights(origin,destination,duration)values("Shanghai","Paris",760);
+INSERT INTO flights(origin,destination,duration)values("Panama","Costa Rica",200);
+INSERT INTO flights(origin,destination,duration)values("Mexico","Argentina",600);
+INSERT INTO flights(origin,destination,duration)values("Instanbul","Tokyo",700);
+INSERT INTO flights(origin,destination,duration)values("New York","Paris",435);
+INSERT INTO flights(origin,destination,duration)values("Moscou","Paris",245);
+INSERT INTO flights(origin,destination,duration)values("Lima","New York",435);
+
+#Realizando Consultas usando select 
+SELECT  origin FROM `flights` WHERE duration = 435
+SELECT origin , destination AS inicio FROM flights where duration > 400  ORDER BY duration
+SELECT origin FROM `flights` WHERE destination like 'Pa%'
+SELECT AVG(duration) as promedios from flights
+SELECT * FROM `flights`ORDER by duration DESC
+SELECT * FROM `flights`ORDER by duration DESC LIMIT 3
+#Usando Update 
+UPDATE flights set destination ="Peru" WHERE id=1
+
+#Creando tabla passenger 
+CREATE TABLE passenger ( 
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	name VARCHAR(255) NOT NULL, 
+	flights_id INT NOT NULL, 
+	FOREIGN KEY (flights_id) REFERENCES flights(id) 
+)
+
+#Insertando Data
+INSERT INTO passenger(name, flights_id)values("Alice",1);
+INSERT INTO passenger(name, flights_id)values("Bob",1);
+INSERT INTO passenger(name, flights_id)values("Charlie",2);
+INSERT INTO passenger(name, flights_id)values("Dave",2);
+INSERT INTO passenger(name, flights_id)values("Erin",4);
+INSERT INTO passenger(name, flights_id)values("Frank",6);
+INSERT INTO passenger(name, flights_id)values("Grace",6);
+
+#Realizando consultas uniendo flights y passenger 
+SELECT name,origin,destination FROM passenger,flights where flights_id = 2 and flights.id = 2
+SELECT name,origin,destination FROM passenger,flights where flights_id = flights.id
+
+
+
+
+
+
