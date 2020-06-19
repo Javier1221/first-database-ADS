@@ -1,0 +1,26 @@
+Scripts usadas para la creación
+
+#Cursos
+CREATE TABLE cursos(
+    id_curso Int AUTO_INCREMENT PRIMARY KEY,
+    nombre_curso varchar(80) not null ,
+    horario_c int not null
+)
+#Alumnos
+CREATE table alumnos(
+  id_alumno int AUTO_INCREMENT PRIMARY KEY,
+    nombre_alumno varchar(50) not null ,
+    direccion_alumno varchar(80) not null,
+    correo_alumno varchar(80)
+    
+)
+
+#Agregando las llaves foraneas de profesores
+ALTER TABLE cursos add COLUMN id_profesores int not null ;
+ALTER TABLE cursos add FOREIGN KEY (id_profesores) REFERENCES profesores(id_profesor)
+
+#Agregando llaves foraneas de alumnos 
+ALTER TABLE cursos add COLUMN id_alumnos int not null ;
+ALTER TABLE cursos add FOREIGN KEY (id_alumnos) REFERENCES alumnos(id_alumno)
+
+Aun no subo la data la poseo en un excel
