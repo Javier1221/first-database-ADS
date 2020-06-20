@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Scripts usadas para la creación
 
 #Cursos
@@ -14,6 +15,7 @@ CREATE table alumnos(
     correo_alumno varchar(80)
     
 )
+ALTER TABLE `alumnos` ADD `id_curso` INT NOT NULL AFTER `nombre_alumno`;
 
 #Agregando las llaves foraneas de profesores
 ALTER TABLE cursos add COLUMN id_profesores int not null ;
@@ -23,4 +25,84 @@ ALTER TABLE cursos add FOREIGN KEY (id_profesores) REFERENCES profesores(id_prof
 ALTER TABLE cursos add COLUMN id_alumnos int not null ;
 ALTER TABLE cursos add FOREIGN KEY (id_alumnos) REFERENCES alumnos(id_alumno)
 
+=======
+Scripts usadas para la creación
+
+#Cursos
+CREATE TABLE cursos(
+    id_curso Int AUTO_INCREMENT PRIMARY KEY,
+    nombre_curso varchar(80) not null ,
+    horario_c int not null
+)
+#Alumnos
+CREATE table alumnos(
+  id_alumno int AUTO_INCREMENT PRIMARY KEY,
+    nombre_alumno varchar(50) not null ,
+    direccion_alumno varchar(80) not null,
+    correo_alumno varchar(80)
+    
+)
+ALTER TABLE `alumnos` ADD `id_curso` INT NOT NULL AFTER `nombre_alumno`;
+
+#Agregando las llaves foraneas de profesores
+ALTER TABLE cursos add COLUMN id_profesores int not null ;
+ALTER TABLE cursos add FOREIGN KEY (id_profesores) REFERENCES profesores(id_profesor)
+
+#Agregando llaves foraneas de alumnos 
+ALTER TABLE cursos add COLUMN id_alumnos int not null ;
+ALTER TABLE cursos add FOREIGN KEY (id_alumnos) REFERENCES alumnos(id_alumno)
+
+ALTER TABLE alumnos add COLUMN id_cursos int not null ;
+ALTER TABLE alumnos add FOREIGN KEY (id_cursos) REFERENCES cursos(id_cursos)
+ALTER TABLE alumnos ADD FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+
+>>>>>>> 165994e5738c3cf39404cf2464bc320a68f18185
 Aun no subo la data la poseo en un excel
+
+####Ingresando Data
+LOAD DATA INFILE C:/Users/Javier Marín/Desktop/Db_fundader INTO TABLE 'alumnos'
+
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n';
+INSERT INTO `alumnos` VALUES ('1', 'Javier', '1', 'chorrera', 'javier@gmail.com')
+INSERT INTO `alumnos` VALUES ('2', 'Carlos', '2', 'Guadalupe', 'carlos@gmail.com')
+INSERT INTO `alumnos` VALUES ('3', 'Yanith', '1', 'Arraijan', 'yanith@gmail.com')
+INSERT INTO `alumnos` VALUES ('4', 'Rosalia ', '1', 'El Coco', 'rosalia@gmail.com
+INSERT INTO `alumnos` VALUES ('5', 'Petronilo', '2', 'La Pesa 1', 'petronilo@gmail.com')
+
+
+
+cursos(nombre_curso,horario_c)VALUES("Desarrollo 1",12)
+
+
+
+
+
+
+CREATE TABLE cursos(
+    id_curso Int AUTO_INCREMENT PRIMARY KEY,
+    nombre_curso varchar(80) not null ,
+    horario_c int not null,
+    id_profesor int not null,
+    id_alumno int not null,
+    FOREIGN key (id_profesores) REFERENCES profesor(id_profesor),
+    FOREIGN key (id_alumno) REFERENCES alumnos(id_alumno)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

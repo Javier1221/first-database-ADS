@@ -48,6 +48,18 @@ INSERT INTO passenger(name, flights_id)values("Grace",6);
 SELECT name,origin,destination FROM passenger,flights where flights_id = 2 and flights.id = 2
 SELECT name,origin,destination FROM passenger,flights where flights_id = flights.id
 
+#Consultas para la Asignación
+SELECT origin, COUNT(*) FROM flights GROUP BY origin
+SELECT origin, COUNT(*) FROM flights GROUP BY origin HAVING COUNT(*) > 1
+SELECT origin, destination, name FROM flights JOIN passenger ON passenger.flights_id = flights.id WHERE name = "Alice"
+SELECT origin, destination, name FROM flights LEFT JOIN passenger ON passenger.flights_id = flights.id
+SELECT origin, destination, name FROM flights RIGHT JOIN passenger ON passenger.flights_id = flights.id
+
+
+
+
+
+
 
 
 
